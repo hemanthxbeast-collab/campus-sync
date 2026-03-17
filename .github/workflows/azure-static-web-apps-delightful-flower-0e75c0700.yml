@@ -8,7 +8,7 @@ on:
 jobs:
   build_and_deploy_job:
     runs-on: ubuntu-latest
-
+    name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v3
 
@@ -28,9 +28,9 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DELIGHTFUL_FLOWER_0E75C0700 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: upload
+          action: "upload"
           app_location: "/" 
-          # 1. Change this to "out" (Next.js default export folder)
-          output_location: "out" 
-          # 2. Add this so Azure doesn't try to build it a second time
+          # Use this specific parameter to point to the Next.js export folder
+          app_artifact_location: "out" 
+          # This helps override the automatic detection
           skip_app_build: true
